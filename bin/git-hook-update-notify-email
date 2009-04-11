@@ -37,6 +37,7 @@ end
 Trollop::die :to, 'you need define recipients to send notification' if opts[:to].nil?
 
 git_rev = GitRevision.get_all_revision(refname, old_sha1, new_sha1, opts[:style])
+
 GitDiffMail.template_root = File.join( File.dirname(__FILE__), 'view/')
 git_rev.each do |rev|
   GitDiffMail.deliver_git_diff_mail(rev, opts)
