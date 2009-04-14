@@ -37,8 +37,10 @@ module GitHookUpdateNotifyEmail
     end
 
     def diff_format_coloring
+      # FIXME: change renderer to redmine's one. Use partial and css of them.
       diff = diff_format_patch
-      CodeRay.scan(diff, :git_diff).git(:style => :git_hook, :css => :style, :wrap => :div, :style_conf => @style)
+      CodeRay.scan(diff, :git_diff).git(:style => :git_hook, :css => :style, :wrap => :div, :style_conf => @style, :line_numbers => :table)
+      # CodeRay.scan( diff, :diff).div(:line_numbers => :table, :css => :class)      
     end
 
     def get_repo
